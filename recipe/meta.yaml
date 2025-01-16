@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/git-history-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/git-history-{{ version }}.tar.gz
   sha256: e423a96916ef8b7d5504efc9e378e54aa86ccbb0136dc7846ac9c04593f0caca
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
@@ -20,11 +20,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
   run:
     - click
     - gitpython
-    - python >=3.6
+    - python >={{ python_min }}
     - sqlite-utils >=3.19
 
 test:
@@ -38,6 +39,7 @@ test:
     - gitpython
     - git        # [unix]
     - m2-git  # [win]
+    - python {{ python_min }}
 
 about:
   home: https://github.com/simonw/git-history
