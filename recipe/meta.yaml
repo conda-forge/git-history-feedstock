@@ -1,5 +1,5 @@
 {% set name = "git-history" %}
-{% set version = "0.6.1" %}
+{% set version = "0.8" %}
 
 
 package:
@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/git-history-{{ version }}.tar.gz
-  sha256: e423a96916ef8b7d5504efc9e378e54aa86ccbb0136dc7846ac9c04593f0caca
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: f872738d2f9285059a7136457773d65305f276cc0c5648f86ccfe458a8858e1e
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
